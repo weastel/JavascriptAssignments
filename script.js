@@ -10,15 +10,20 @@ function validateForm() {
     if (!nameREGEX.test(IMGForm["name"].value)) {
         document.getElementById("nameError").innerHTML =
             "Name should contain only character not digits"
+        check = false
+        IMGForm["name"].className += " wrong-border "
     } else {
         document.getElementById("nameError").innerHTML = ""
+        IMGForm["name"].className += " right-border"
     }
     if (IMGForm["password"].value !== IMGForm["confirmPassword"].value) {
         document.getElementById("confirmError").innerHTML =
             "Password and confirm Password should be same"
         check = false
+        IMGForm["confirmPassword"].className += " wrong-border"
     } else {
         document.getElementById("confirmError").innerHTML = ""
+        IMGForm["confirmPassword"].className += " right-border"
     }
     var phoneREGEX = /^(91|0)?[9768]\d{9}$/
     console.log(phoneREGEX.test(IMGForm["phoneNumber"].value))
@@ -26,16 +31,38 @@ function validateForm() {
         document.getElementById("phoneError").innerHTML =
             "Phone number is not corect"
         check = false
+        IMGForm["phoneNumber"].className += " wrong-border"
     } else {
         document.getElementById("phoneError").innerHTML = ""
+        IMGForm["phoneNumber"].className += " right-border"
     }
     var emailREGEX = /iitr\.ac\.in/
     if (!emailREGEX.test(IMGForm["email"].value)) {
         document.getElementById("emailError").innerHTML =
             "IITR email should be used"
         check = false
+        IMGForm["email"].className += " wrong-border"
     } else {
         document.getElementById("emailError").innerHTML = ""
+        IMGForm["email"].className += " right-border"
     }
-    return check
+    if (check || document.getElementById("admin").value) {
+        MyAJAXcall()
+    }
+}
+
+function MyAJAXcall() {
+    console.log("function is running")
+    var Http = new XMLHttpRequest()
+    var userEmail = IMGForm["email"].value
+    Http.open("POST", "http://172.25.55.8:3000/my_machau_api", true)
+    Http.setRequestHeader("Content-type", "application/json")
+    Http.send(
+        JSON.stringify({
+            email: userEmail,
+        })
+    )
+    Http.onload = () => {
+        alert(JSON.parse(Http.response).response.message)
+    }
 }

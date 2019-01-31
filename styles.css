@@ -3,18 +3,28 @@ body {
     height: 100vh;
     padding: 0;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 label {
     margin: 15px;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
 }
 form {
+    padding: 20px;
     display: flex;
     align-items: center;
     font-family: "Caveat Brush", cursive;
     flex-direction: column;
     font-size: 2em;
+    width: 75%;
     color: white;
+    border: 5px solid white;
+    box-shadow: 0 0 50px gray;
 }
 #submit {
     border: none;
@@ -49,8 +59,25 @@ select {
 }
 fieldset {
     border: 2px solid white;
+    width: 50%;
 }
 #submit:hover {
     box-shadow: none;
     background: indigo;
+}
+
+.wrong-border {
+    border: 3px solid #990000;
+}
+.hidden {
+    display: none;
+}
+
+.right-border {
+    border: none;
+}
+.error {
+    padding: 10px;
+    align-items: center;
+    color: #ff8080;
 }

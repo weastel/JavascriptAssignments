@@ -12,17 +12,22 @@
         />
     </head>
     <body>
-        <form name="IMGForm" onsubmit="return validateForm()" method="POST">
+        <form
+            name="IMGForm"
+            action="#"
+            onsubmit="validateForm();return false"
+            method="POST"
+        >
             <label for="name"
                 >Name :-
-                <input type="text" name="name" required />
-                <div id="nameError"></div>
+                <input type="text" name="name" />
             </label>
+            <div class="error" id="nameError"></div>
             <label id="phoneNumberLabel" for="phoneNumber"
                 >Phone :-
-                <input type="number" name="phoneNumber" required />
-                <div id="phoneError"></div>
+                <input type="number" name="phoneNumber" />
             </label>
+            <div class="error" id="phoneError"></div>
             <label id="Agelabel" for="Age"
                 >Age:-
                 <input id="" type="number" name="Age" />
@@ -30,8 +35,8 @@
             <label for="email">
                 Email :-
                 <input type="email" name="email" />
-                <div id="emailError"></div>
             </label>
+            <div class="error" id="emailError"></div>
             <fieldset>
                 <legend>Gender</legend>
                 <input type="radio" name="gender" value="male" />Male<br />
@@ -44,8 +49,8 @@
             <label for="confirmPassword"
                 >Confirm Password :-
                 <input type="password" name="confirmPassword" />
-                <div id="confirmError"></div>
             </label>
+            <div class="error" id="confirmError"></div>
             <label for="education">
                 Educational Qualification:
                 <select name="education">
@@ -56,7 +61,11 @@
             </label>
             <label for="city"> City: <input type="text" name="city" /> </label>
             <input type="submit" id="submit" />
+            <label for="admin" class="hidden"
+                >Admin :- <input type="checkbox" name="admin" id="admin" />
+            </label>
         </form>
+
         <script src="script.js"></script>
     </body>
 </html>
